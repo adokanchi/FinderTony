@@ -1,9 +1,10 @@
-Name: YOUR NAME HERE
+Name: Tony Dokanchi
 
-| Date    |  Time  |                                     Update |
-|:--------|:------:|-------------------------------------------:|
-| April 5 | 9-10pm | I tried to write abstract, efficient code. |
-|         |        |                                            |
+| Date       |     Time      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Update |
+|:-----------|:-------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| April 5    |    9-10pm     |                                                                                                                                                                                                                                                                                                                                                                                                                                I tried to write abstract, efficient code. |
+| October 31 | 11:00-11:45pm | I discussed the merits of different algorithms and data structures with other students in class. We settled on precomputing a table where we hash all the keys and store the key-value pairs in a map of lists together with all other key-value pairs with the same hash. Then, when checking the values of specific keys, we can use the map to get a lookup for all vey-value pairs with the same hash in constant time, then simply search that greatly reduced list. |
+| October 31 |  6:00-6:30pm  |                                                                                                                                                                                                                                                                                              I coded the above algorithm. I used a Node class to store key-value pairs and a CollisionSet class to keep track of all the Nodes that have the same hash as the target key. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
