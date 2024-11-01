@@ -12,28 +12,28 @@ public class FinderTester {
     private BufferedReader csvReader, queryReader, resultReader;
 
     @Test
-    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+    @Timeout(value = 100_0, unit = TimeUnit.MILLISECONDS)
     public void testElements() {
         setTestData("elements", 2, 0);
         runTest();
     }
 
     @Test
-    @Timeout(value = 150, unit = TimeUnit.MILLISECONDS)
+    @Timeout(value = 150_0, unit = TimeUnit.MILLISECONDS)
     public void testIPs() {
         setTestData("IP", 0, 1);
         runTest();
     }
 
     @Test
-    @Timeout(value = 325, unit = TimeUnit.MILLISECONDS)
+    @Timeout(value = 325_0, unit = TimeUnit.MILLISECONDS)
     public void testStocks() {
         setTestData("DJIA", 0, 2);
         runTest();
     }
 
     @Test
-    @Timeout(value = 2000, unit = TimeUnit.MILLISECONDS)
+    @Timeout(value = 2000_0, unit = TimeUnit.MILLISECONDS)
     public void testProducts() {
         setTestData("UPC", 0, 2);
         runTest();

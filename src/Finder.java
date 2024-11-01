@@ -52,7 +52,7 @@ public class Finder {
         if (s.isEmpty()) {
             return current;
         }
-        int next = ((current * R) % p + s.charAt(0));
+        int next = ((current * R) % p + s.charAt(0)) % p;
         return polyRollingHash(s.substring(1), next);
     }
 }
