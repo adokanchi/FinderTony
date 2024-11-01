@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Finder
@@ -13,29 +12,28 @@ import java.util.ArrayList;
 
 public class Finder {
     public static final String INVALID = "INVALID KEY";
-    private static final int p = 249_998_741;
+    //private static final int p = 249_998_741;
+    private static final int p = 2_000_003;
     private static CollisionSet[] map;
 
     public Finder() {}
 
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
-        // Skip first line which is the labels of the csv file
-        br.readLine();
+        // n = number
 
-        // Read the csv file
-        // Hash using radix p, Store everything with the same hash together
-        String[] line;
-        int count = 0;
-        do {
-            line = br.readLine().split(",");
-            String key = line[keyCol];
-            String val = line[valCol];
-            Node toStore = new Node(key, val);
-            map[hash(key)].add(toStore);
-            count++;
+        map = new CollisionSet[p+1];
+        for (int i = 0; i < p+1; i++) {
+            map[i] = new CollisionSet();
         }
-        while (count < 1_300_000);
-
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] dataRow = line.split(",");
+            String key = dataRow[keyCol];
+            String val = dataRow[valCol];
+            Node node = new Node(key, val);
+            int keyHash = hash(key);
+            map[keyHash].add(node);
+        }
         br.close();
     }
 
@@ -46,7 +44,7 @@ public class Finder {
     }
 
     public int hash(String s) {
-        return polyRollingHash(s, 0);
+        return polyRollingHash(s, 0) % p;
     }
 
     public int polyRollingHash(String s, int current) {
@@ -54,7 +52,7 @@ public class Finder {
         if (s.isEmpty()) {
             return current;
         }
-        int next = ((current * R) % p + s.charAt(0)) % p;
+        int next = ((current * R) % p + s.charAt(0));
         return polyRollingHash(s.substring(1), next);
     }
 }
