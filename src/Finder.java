@@ -12,12 +12,32 @@ import java.io.IOException;
 
 public class Finder {
     public static final String INVALID = "INVALID KEY";
-    private static final int p = 100_003;
-    private static CollisionSet[] map;
+    private static HashMap map;
 
     public Finder() {}
 
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
+        map = new HashMap();
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] dataRow = line.split(",");
+            String key = dataRow[keyCol];
+            String val = dataRow[valCol];
+            map.add(key, val);
+        }
+        br.close();
+    }
+
+    public String query(String key) {
+        return map.get(key);
+    }
+
+    /*
+
+    public static final int p = 100_003;
+    private static CollisionSet[] map;
+
+    public void buildTableChains(BufferedReader br, int keyCol, int valCol) throws IOException {
         map = new CollisionSet[p+1];
         for (int i = 0; i < p+1; i++) {
             map[i] = new CollisionSet();
@@ -34,7 +54,7 @@ public class Finder {
         br.close();
     }
 
-    public String query(String key){
+    public String queryChains(String key) {
         return map[hash(key)].linearSearch(key);
     }
 
@@ -48,4 +68,6 @@ public class Finder {
         int next = ((current * R) % p + s.charAt(0)) % p;
         return polyRollingHash(s.substring(1), next);
     }
+
+     */
 }
