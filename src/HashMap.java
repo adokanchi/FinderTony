@@ -1,6 +1,6 @@
 public class HashMap {
     private Pair[] map;
-    private final static int DEFAULT_SIZE = 100;
+    private final static int DEFAULT_SIZE = 192;
     private int tableSize;
     private int n;
     private final static double LOAD_FACTOR = 0.5;
@@ -19,7 +19,7 @@ public class HashMap {
     }
 
     public String get(String key) {
-        int index = hash(key);
+        int index = polyHash(key);
         while (map[index] != null) {
             if (map[index].getKey().equals(key)) {
                 return map[index].getVal();
@@ -31,7 +31,7 @@ public class HashMap {
 
     // Helper method for add() and resize()
     private void addToMap(String key, String val, Pair[] map) {
-        int index = hash(key);
+        int index = polyHash(key);
         while (map[index] != null) {
             index = ++index % tableSize;
         }
@@ -49,10 +49,19 @@ public class HashMap {
 
     private int hash(String key) {
         final int R = 256;
-        int hash = 0;
+        long hash = 0;
         for (int i = 0; i < key.length(); i++) {
             hash = (hash * R + key.charAt(i)) % tableSize;
         }
-        return hash;
+        return (int) hash;
+    }
+
+    private int polyHash(String key) {
+        final int R = 853;
+        long hash = 0;
+        for (int i = 0; i < key.length(); i++) {
+            hash = (hash * R + key.charAt(i)) % tableSize;
+        }
+        return (int) hash;
     }
 }
