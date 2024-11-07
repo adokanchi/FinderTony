@@ -21,9 +21,7 @@ public class Finder {
         String line;
         while ((line = br.readLine()) != null) {
             String[] dataRow = line.split(",");
-            String key = dataRow[keyCol];
-            String val = dataRow[valCol];
-            map.add(key, val);
+            map.add(dataRow[keyCol], dataRow[valCol]);
         }
         br.close();
     }
